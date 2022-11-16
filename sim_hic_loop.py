@@ -19,9 +19,7 @@ def main():
     # Multiprocessing
     jobs = []
     for process_name in range(num_processes):
-        p = multiprocessing.Process(
-            name=str(process_name), target=run_sim, args=(loop_in, chr_rg)
-        )
+        p = multiprocessing.Process(name=str(process_name), target=run_sim, args=(loop_in, chr_rg))
         jobs.append(p)
         p.start()
 
@@ -51,9 +49,7 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     Takes in a dataframe composed of all the rows for a single chromosome
     and a dataframe of chromosome regions
     """
-    chr = loop_chr_in.loc[
-        loop_chr_in.first_valid_index(), 0
-    ]  # Get the chromosome number
+    chr = loop_chr_in.loc[loop_chr_in.first_valid_index(), 0]  # Get the chromosome number
 
     a = chr_rg[chr_rg[0] == chr]  # Region num for current chromosome
     ran = int(a[2])  # ! Need this or pandas does weird things
@@ -65,10 +61,8 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     loop_chr_out.loc[loop_chr_in.first_valid_index()] = sim_chromosome_helper(
         chr,
         ran,
-        res=loop_chr_in.loc[loop_chr_in.first_valid_index(), 2]
-        - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
-        len_=loop_chr_in.loc[loop_chr_in.first_valid_index(), 4]
-        - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
+        res=loop_chr_in.loc[loop_chr_in.first_valid_index(), 2] - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
+        len_=loop_chr_in.loc[loop_chr_in.first_valid_index(), 4] - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
     )
 
     # Fill in the rest of the rows
@@ -78,11 +72,7 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     for idx, row_in in enumerate(rows_in):  # Will start at 2nd row
         dist = row_in[1] - prev_row_in[1]
         len_ = row_in[4] - row_in[1]
-        if (
-            dist < 10**6
-            and (prev_row_out[2] + dist) < ran
-            and (prev_row_out[2] + dist + len_) < ran
-        ):
+        if dist < 10**6 and (prev_row_out[2] + dist) < ran and (prev_row_out[2] + dist + len_) < ran:
             row_out = [
                 prev_row_out[0],
                 prev_row_out[1] + dist,
