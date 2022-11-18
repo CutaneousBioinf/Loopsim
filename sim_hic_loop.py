@@ -1,41 +1,55 @@
+"""Script to do Hi-C loop simulation
+Args:   num_simulations (int): Number of simulations to run (default 1)
+        out_dir (str): Directory to output simulated loop data to (default "out")
+"""
+
 import multiprocessing
+import os
 import sys
 
 import numpy as np
 import pandas as pd
+from multiprocesspandas import applyparallel
 
 
 def main():
     # Read in loop data
-    loop_in = pd.read_table("merged_5K_10K.loop", header=None)
+    loop_in = pd.read_table("merged_5K_10K.loop", header=None, delimiter="\t")
 
     # Read in chromosome regions
     chr_rg = pd.read_table("chr_region_hg19", header=None, delimiter=" ")
 
     # CLI args
-    num_processes = sys.argv[1] if len(sys.argv) > 1 else 1
-    print(f"Running {num_processes} processes.")
+    num_simulations = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+    print(f"Running {num_simulations} simulations in {num_simulations} processes.")
+    out_dir = sys.argv[2] if len(sys.argv) > 2 else "out"
+    if not os.path.isdir(out_dir):
+        os.makedirs(out_dir)
+        print(f"Creating output directory {out_dir}.")
+    print(f"Outputting simulation files to directory {out_dir}.")
 
     # Multiprocessing
-    jobs = []
-    for process_name in range(num_processes):
-        p = multiprocessing.Process(name=str(process_name), target=run_sim, args=(loop_in, chr_rg))
-        jobs.append(p)
+    processes = []
+    for process_name in range(num_simulations):
+        processes.append(
+            multiprocessing.Process(name=str(process_name), target=run_sim, args=(loop_in, chr_rg, out_dir))
+        )
+    for p in processes:
         p.start()
 
 
-def run_sim(loop_in, chr_rg):
+def run_sim(loop_in, chr_rg, out_dir):
     """Run simulation on all chromosomes"""
     process_name = multiprocessing.current_process().name
 
     # Run simulation
     print(f"Process {process_name} simulation started.")
-    loop_out = split_by_chr(loop_in).apply(sim_chromosome, chr_rg=chr_rg)
+    loop_out = split_by_chr(loop_in).apply_parallel(sim_chromosome, chr_rg=chr_rg, num_processes=24)
     print(f"Process {process_name} simulation complete.")
 
     # Output simulated loop data to file
-    output_filepath = f"out/sim_hic_5K_10K-{process_name}.loop"
-    loop_out.to_csv(output_filepath, header=None, index=None)
+    output_filepath = f"{out_dir}/sim_hic_5K_10K-{process_name}.loop"
+    loop_out.to_csv(output_filepath, header=None, index=None, sep="\t")
     print(f"Process {process_name} data outputted to file {output_filepath}.")
 
 
