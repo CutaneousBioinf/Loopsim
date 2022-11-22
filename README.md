@@ -16,19 +16,18 @@ $ conda activate hi-c
 To run the simulation:
 
 ```console
-$ python3 sim_hic_loop.py [num_simulations] [output_dir]
+$ ./sim_hic_loop.py --help
+Usage: sim_hic_loop.py [OPTIONS] LOOP_IN_FILE
+
+Options:
+  --num_sims INTEGER   [default: 1]
+  --out_dir DIRECTORY  [default: ./out]
+  --help               Show this message and exit.
 ```
 
-For each simulation, the program will generate a simulated loop file (`sim_hic_5K_10K-<simulation number>.loop`) in `output_dir`.
+For each simulation, the program will generate a simulated loop file (`sim_hi-c_<simulation number>.loop`) in `out_dir`.
 
-If `output_dir` does not exist already, it will be created.
-
-The arguments `num_simulations` and `output_dir` are optional.
-If they are not given, the program will default to the following.
-
-```console
-$ python3 sim_hic_loop.py 1 out/
-```
+If `out_dir` does not exist already, it will be created.
 
 ### Short tutorial
 
@@ -38,13 +37,13 @@ Running one simulation with the provided input files:
 
 ```console
 $ conda activate hi-c
-$ python3 sim_hic_loop.py
-Running 1 simulations in 1 processes.
-Creating output directory out.
-Outputting simulation files to directory out.
-Process 0 simulation started.
-Process 0 simulation complete.
-Process 0 data outputted to file out/sim_hic_5K_10K-0.loop.
+$ ./sim_hic_loop.py merged_5K_10K.loop
+Input loop file: merged_5K_10K.loop
+Number of simulations: 1
+Outputting simulation files to directory: ./out.
+Simulation 0 simulation started.
+Simulation 0 simulation complete.
+Simulation 0 data outputted to file: ./out/sim_hi-c_0.loop.
 ```
 
 You should have something like the following.
@@ -52,19 +51,19 @@ You should have something like the following.
 ```
 .
 └── out
-    └── sim_hic_5K_10K-0.loop
+    └── sim_hi-c_0.loop
 ```
 
 ```console
-$ head out/sim_hic_5K_10K-0.loop
-1       96214354.0      96224354.0      1       96324354.0      96334354.0
-1       96374354.0      96384354.0      1       96474354.0      96484354.0
-1       96629354.0      96639354.0      1       96744354.0      96754354.0
-1       96634354.0      96644354.0      1       97019354.0      97029354.0
-1       96634354.0      96644354.0      1       96824354.0      96834354.0
-1       96644354.0      96654354.0      1       96994354.0      97004354.0
-1       96689354.0      96699354.0      1       96729354.0      96739354.0
-1       96834354.0      96844354.0      1       96974354.0      96984354.0
-1       96849354.0      96859354.0      1       97204354.0      97214354.0
-1       96884354.0      96894354.0      1       97824354.0      97834354.0
+$ head out/sim_hi-c_0.loop
+1       52598173.0      52608173.0      1       52708173.0      52718173.0
+1       52758173.0      52768173.0      1       52858173.0      52868173.0
+1       53013173.0      53023173.0      1       53128173.0      53138173.0
+1       53018173.0      53028173.0      1       53403173.0      53413173.0
+1       53018173.0      53028173.0      1       53208173.0      53218173.0
+1       53028173.0      53038173.0      1       53378173.0      53388173.0
+1       53073173.0      53083173.0      1       53113173.0      53123173.0
+1       53218173.0      53228173.0      1       53358173.0      53368173.0
+1       53233173.0      53243173.0      1       53588173.0      53598173.0
+1       53268173.0      53278173.0      1       54208173.0      54218173.0
 ```
