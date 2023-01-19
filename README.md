@@ -2,7 +2,7 @@
 
 ## TODO: 
 
-- [ ] Instructions on the rest of the pipeline
+- [ ] Update instructions
 
 ## Running the simulation
 
