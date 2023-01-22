@@ -15,7 +15,11 @@ from multiprocesspandas import applyparallel
 @click.argument("loop_in_file", type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True))
 @click.argument("chromosome_rg_file", type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True))
 @click.option("--num-sims", show_default=True, default=1, type=int, help="number of simulations")
-@click.option("--num-processes", type=int, help="number of threads to use [default: number of available CPU cores]")
+@click.option(
+    "--num-processes",
+    type=int,
+    help="number of threads to use                          [default: round(multiprocessing.cpu_count() / 2)]",
+)
 @click.option(
     "--out-dir",
     show_default=True,
@@ -25,16 +29,15 @@ from multiprocesspandas import applyparallel
 )
 @click.option(
     "--output-delimiter",
-    show_default=True,
-    default=",",
+    default="\t",
     type=str,
-    help="delimiter for the output file",
+    help="delimiter for the output file [default: tab]",
 )
 @click.option(
     "--flag-end-size",
     show_default=True,
-    default=1e5,
-    type=float,
+    default=100_000,
+    type=int,
     help="warn on loop ends that are sized >= this param",
 )
 def main(loop_in_file, chromosome_rg_file, num_sims, num_processes, out_dir, output_delimiter, flag_end_size):
@@ -46,7 +49,7 @@ def main(loop_in_file, chromosome_rg_file, num_sims, num_processes, out_dir, out
 
     # Set number of processes if not passed in by user
     if num_processes is None:
-        num_processes = multiprocessing.cpu_count()
+        num_processes = round(multiprocessing.cpu_count() / 2)
 
     # Print given arguments for a sanity check
     print(f"Input loop file: {loop_in_file}")
@@ -207,9 +210,7 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     # Fill in the rest of the rows
     # Will start at 2nd row
     for iterations, row_in in enumerate(
-        loop_chr_in.loc[loop_chr_in.first_valid_index() + 1 : loop_chr_in.last_valid_index() + 1].itertuples(
-            index=False
-        )
+        loop_chr_in.loc[loop_chr_in.first_valid_index() + 1 : loop_chr_in.last_valid_index() + 1].itertuples(index=False)
     ):
         dist = row_in[1] - prev_row_in[1]
         len_ = row_in[4] - row_in[1]
