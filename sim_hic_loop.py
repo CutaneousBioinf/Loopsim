@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Script to do Hi-C loop simulation"""
 
-import multiprocessing
+import multiprocessing as mp
 import os
 
 import click
 import numpy as np
 import pandas as pd
 from detect_delimiter import detect
-from multiprocesspandas import applyparallel
 
 
 @click.command()
@@ -49,7 +48,7 @@ def main(loop_in_file, chromosome_rg_file, num_sims, num_processes, out_dir, out
 
     # Set number of processes if not passed in by user
     if num_processes is None:
-        num_processes = round(multiprocessing.cpu_count() / 2)
+        num_processes = round(mp.cpu_count() / 2)
 
     # Print given arguments for a sanity check
     print(f"Input loop file: {loop_in_file}")
@@ -77,8 +76,8 @@ def main(loop_in_file, chromosome_rg_file, num_sims, num_processes, out_dir, out
 
     # Multiprocessing
     sim_names = range(num_sims)
-    with multiprocessing.Pool() as pool:
-        completed_sims = pool.starmap(run_sim, [(loop_in, chr_rg, sim_name, num_processes) for sim_name in sim_names])
+    with mp.Pool(num_processes) as pool:
+        completed_sims = pool.starmap(run_sim, [(loop_in, chr_rg, sim_name) for sim_name in sim_names])
 
     # Output simulated loop data to files
     for sim, sim_name in zip(completed_sims, sim_names):
@@ -166,10 +165,10 @@ def validate_row(row, flag_end_size):
     return row
 
 
-def run_sim(loop_in, chr_rg, sim_name, num_processes):
+def run_sim(loop_in, chr_rg, sim_name):
     """Run simulation on all chromosomes"""
     print(f"Simulation {sim_name} simulation started")
-    loop_out = split_by_chr(loop_in).apply_parallel(sim_chromosome, chr_rg=chr_rg, num_processes=num_processes)
+    loop_out = split_by_chr(loop_in).apply(sim_chromosome, chr_rg=chr_rg)
     print(f"Simulation {sim_name} simulation complete")
     return loop_out
 
@@ -212,16 +211,19 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     for iterations, row_in in enumerate(
         loop_chr_in.loc[loop_chr_in.first_valid_index() + 1 : loop_chr_in.last_valid_index() + 1].itertuples(index=False)
     ):
+
         dist = row_in[1] - prev_row_in[1]
         len_ = row_in[4] - row_in[1]
+        res = row_in[5] - row_in[4]
+
         if dist < 10**6 and (prev_row_out[2] + dist) < ran and (prev_row_out[2] + dist + len_) < ran:
             row_out = [
                 chr,
                 prev_row_out[1] + dist,
-                prev_row_out[2] + dist,
+                prev_row_out[1] + dist + res,
                 chr,
                 prev_row_out[1] + dist + len_,
-                prev_row_out[2] + dist + len_,
+                prev_row_out[1] + dist + len_ + res,
             ]
         else:
             row_out = sim_chromosome_helper(
@@ -231,6 +233,7 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
                 len_=row_in[4] - row_in[1],
                 random_state=random_state,
             )
+
         loop_chr_out.loc[iterations + 1] = row_out
         prev_row_in, prev_row_out = row_in, row_out
 
