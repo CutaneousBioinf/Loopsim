@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LoopSim"
+version = "0.1.0"
+authors = [
+  { name="Gideon Shaked", email="gshaked@umich.edu" },
+]
+description = "A Fast Computational Tool for the Simulation and Analysis of Chromatin Loops"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools]
+packages = ["loopsim"]
+
+[project.scripts]
+loopsim = "loopsim.cli:cli"
+
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 130
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
