@@ -1,3 +1,5 @@
+"""Validate loop file used as input"""
+
 import click
 import numpy as np
 import pandas as pd
@@ -19,7 +21,7 @@ from . import common
 def validate(loop_in_file, loop_out_file, chromosome_region_file, flag_end_size):
     """Validate input file and output a validated version.
 
-    NOTE: this file may be unchanged."""
+    NOTE: the validated file (LOOP_OUT_FILE) may be unchanged from the original."""
 
     # Print params
     print(f"Input loop file: {loop_in_file}")

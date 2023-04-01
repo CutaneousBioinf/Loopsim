@@ -1,7 +1,5 @@
 """stuff needed across modules in this package"""
 
-import os
-import sys
 
 from detect_delimiter import detect
 

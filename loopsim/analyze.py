@@ -1,7 +1,6 @@
 """loop analysis and empirical distribution"""
 # Invariant: we are assuming that the loop files passed in are all valid
 
-import os
 
 import click
 import numpy as np
@@ -11,36 +10,46 @@ from . import common
 
 
 @click.command()
+@click.argument("loop_in_file", type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True))
+@click.argument("loop_out_file", type=click.Path(exists=False, file_okay=True, dir_okay=False, writable=True))
 @click.argument("intervals_file", type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True))
-@click.argument("simulation_data_directory", type=click.Path(exists=True, file_okay=False, dir_okay=True, readable=True))
-@click.argument("ratio_distribution_file", type=click.Path(exists=False, file_okay=True, dir_okay=False, writable=True))
-def analyze(intervals_file, simulation_data_directory, ratio_distribution_file):
-    """Perform analysis on the distribution of simulated files.
+def analyze(loop_in_file, loop_out_file, intervals_file):
+    """Perform analysis on a single loop file
 
-    Return a file with a distribution of the ratio of loops in each simulation that overlap with regions of interest"""
+    Output the inputted loop file with an extra column.
+    Each row of the extra column will have the indices in the reference file that the loop on that row overlaps with."""
+
+    # Print params
+    print(f"Input loop file: {loop_in_file}")
+    print(f"Output loop file: {loop_out_file}")
+    print(f"Intervals file: {intervals_file}")
+    print(f"Delimiter for output: '{common.delimiter}'")
 
     # Get intervals
     intervals = pd.read_table(intervals_file, header=None, delimiter=common.detect_delimiter(intervals_file))
 
     # Do analysis
     ratios = []
-    for filename in os.listdir(simulation_data_directory):
-        sim = os.path.join(simulation_data_directory, filename)
-        analyze_loop_file(sim, intervals, ratios)
+    loop_out = analyze_loop_file(loop_in_file, intervals, ratios)
 
-    # Output
-    pd.Series(ratios).to_csv(ratio_distribution_file, header=None, index=None, sep=common.delimiter)
+    # Output analysis
+    loop_out.to_csv(loop_out_file, header=None, index=None, sep=common.delimiter)
+    print(f"Outputted analyzed loop file to {loop_out_file}")
+    print(f"Ratio of overlapping intervals out of the total number of loops was: {ratios[0]}")
 
 
 def analyze_loop_file(loop_in_file, intervals, ratios):
+    """ratios isn't used here but is used for bulk analysis"""
     loop_in = pd.read_table(loop_in_file, header=None, delimiter=common.detect_delimiter(loop_in_file))
+
     loop_in[0] = loop_in[0].astype("unicode")
     intervals[0] = intervals[0].astype("unicode")
 
-    loop_in_original_len = len(loop_in)
     loop_in[6] = loop_in.apply(is_overlapping_hic, axis=1, args=(intervals,))
-    loop_in = loop_in.loc[loop_in[6].notnull()]
-    ratios.append(len(loop_in) / loop_in_original_len)
+
+    ratios.append(len(loop_in.loc[loop_in[6].notnull()]) / len(loop_in))
+
+    return loop_in
 
 
 def ranges_overlap(x_start, x_end, y_start, y_end):

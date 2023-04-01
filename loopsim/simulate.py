@@ -39,7 +39,7 @@ def simulate(loop_in_file, chromosome_region_file, simulation_data_directory, nu
     print(f"Chromosome regions file: {chromosome_region_file}")
     print(f"Number of simulations: {num_sims}")
     print(f"Number of processes: {num_processes}")
-    print(f"Outputting simulation files to directory: {simulation_data_directory}.")
+    print(f"Outputting simulation files to directory: {simulation_data_directory}")
     print(f"Delimiter for output: '{common.delimiter}'")
 
     # Read in loop data
