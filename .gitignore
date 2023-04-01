@@ -3,3 +3,7 @@ out/
 __pycache__/
 todo
 *.egg-info
+sims*
+junk/
+tables_out/
+build/

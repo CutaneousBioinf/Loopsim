@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=59.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,12 +16,20 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+dependencies = [
+    "pandas",
+    "numpy",
+    "seaborn",
+    "click",
+    "scipy",
+    "detect_delimiter"
+]
+
 [tool.setuptools]
 packages = ["loopsim"]
 
 [project.scripts]
 loopsim = "loopsim.cli:cli"
-
 
 [tool.isort]
 profile = "black"
