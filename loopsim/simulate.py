@@ -21,7 +21,7 @@ from . import common
     help="number of threads to use                          [default: round(multiprocessing.cpu_count() / 2)]",
 )
 def simulate(loop_in_file, chromosome_region_file, simulation_data_directory, num_sims, num_processes):
-    """Generate a distribution of simulations.
+    """Generate a distribution of simulations
 
     NOTE: any data in SIMULATION_DATA_DIRECTORY may be overwritten!!"""
     # Set number of processes if not passed in by user

@@ -19,7 +19,7 @@ from . import common
     help="warn on loop ends that are sized >= this param",
 )
 def validate(loop_in_file, loop_out_file, chromosome_region_file, flag_end_size):
-    """Validate input file and output a validated version.
+    """Validate input file and output a validated version
 
     NOTE: the validated file (LOOP_OUT_FILE) may be unchanged from the original."""
 
