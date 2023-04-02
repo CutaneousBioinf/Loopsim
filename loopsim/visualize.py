@@ -30,7 +30,7 @@ def visualize(distribution_file, plot_file, other):
     dist = pd.read_table(distribution_file, header=None, delimiter=common.detect_delimiter(distribution_file))
 
     # Create distribution plot
-    ax = sb.histplot(data=dist[0], label="Simulated")
+    ax = sb.histplot(data=dist[0], label="Simulated", kde=True)
     ax.set(
         title=f"Distribution of Overlapping Ratios by Frequency (N = {len(dist)})", xlabel="Overlapping Ratio", ylabel="Frequency"
     )
@@ -58,8 +58,8 @@ def visualize(distribution_file, plot_file, other):
     if other:
         print("\nCalculating p-value based on empirical distribution:")
         num_larger = len(dist.loc[dist[0] > other])
-        print(f"p-value: {str(num_larger / len(dist))}")
+        print(f"p-value: {num_larger / len(dist):.20f}")
 
         print("\nCalculating p-value based on normal distribution:")
         z_stat = (other - dist[0].mean()) / dist[0].std()
-        print(f"p-value: {str(1 - norm.cdf(z_stat))}")
+        print(f"p-value: {1 - norm.cdf(z_stat):.20f}")
