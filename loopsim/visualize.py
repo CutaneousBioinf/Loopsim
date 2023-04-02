@@ -30,18 +30,16 @@ def visualize(distribution_file, plot_file, other):
     dist = pd.read_table(distribution_file, header=None, delimiter=common.detect_delimiter(distribution_file))
 
     # Create distribution plot
-    sb.set_style("dark")
     ax = sb.histplot(data=dist[0], label="Simulated")
     ax.set(
-        title="Frequency of Loop Overlaps with Intervals of Interest",
-        xlabel="Proportion of Loops that Overlap with Regions of Interest",
+        title=f"Distribution of Overlapping Ratios by Frequency (N = {len(dist)})", xlabel="Overlapping Ratio", ylabel="Frequency"
     )
 
     if other:
         ax.axvline(other, color="orange", label="Experimental")
 
     legend_handles, _ = ax.get_legend_handles_labels()
-    ax.legend(handles=legend_handles, title="Legend")
+    ax.legend(handles=legend_handles)
     sb.move_legend(ax, "upper left", bbox_to_anchor=(1, 1))
 
     # Export to jpg
@@ -49,16 +47,19 @@ def visualize(distribution_file, plot_file, other):
     print(f"Exported plot to {plot_file}")
 
     # Summary stats
-    print("Summary stats:")
+    print("\nSummary stats:")
     print(f"Distribution mean: {dist[0].mean()}")
     print(f"Distribution std: {dist[0].std()}")
     print(f"Distribution min: {dist[0].min()}")
     print(f"Distribution median: {dist[0].median()}")
     print(f"Distribution max: {dist[0].max()}")
 
-    # Statistical test (if comparison value is passed)
+    # Statistical tests (if comparison value is passed)
     if other:
-        print("\nZ-test:")
+        print("\nCalculating p-value based on empirical distribution:")
+        num_larger = len(dist.loc[dist[0] > other])
+        print(f"p-value: {str(num_larger / len(dist))}")
+
+        print("\nCalculating p-value based on normal distribution:")
         z_stat = (other - dist[0].mean()) / dist[0].std()
-        print(f"Z-statistic: {z_stat}")
         print(f"p-value: {str(1 - norm.cdf(z_stat))}")

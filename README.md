@@ -15,7 +15,7 @@ python3 -m pip install .
 
 You may receive a warning that is something like `The script loopsim is not on PATH`. You have two options to resolve this. 
 
-- Option one: add the directory with the LoopSim entry point to your path. 
+- Option one: add the directory with the LoopSim entry point to your `$PATH` environment variable. 
 - Option two: invoke LoopSim with `python3 -m loopsim` as opposed to just `loopsim`.
 
 ## Using the pipeline
@@ -147,7 +147,7 @@ Files after:
 |── ratios_out.txt
 └── loop_out_dir
     |── summary_table_0.loop
-    └── summary_table_0.loop
+    └── summary_table_1.loop
 ```
 
 **Analysis of the original file (validated):**
@@ -174,7 +174,8 @@ Files after (though we don't use `loop_analyzed.loop` in the pipeline again):
 ```
 $ loopsim visualize ratios_out.txt dist_plot.jpg --other 0.034299968818210166
 Obtaining overlapping ratios from: ratios_out.txt.
-Exported plot to dist_plot.jpg
+Exported plot to out1.jpg
+
 Summary stats:
 Distribution mean: 0.0178775595052489
 Distribution std: 0.000808458018194828
@@ -182,9 +183,11 @@ Distribution min: 0.0173058933582787
 Distribution median: 0.0178775595052489
 Distribution max: 0.0184492256522191
 
-Z-test:
-Z-statistic: 20.313249350448867
+Calculating p-value based on empirical distribution:
+p-value: 0.0
+
+Calculating p-value based on normal distribution:
 p-value: 0.0
 ```
 
-Note: the p-value being so low is probably an artifact of the simulation having only 2 values.
+Note: $p = 0$ is probably an artifact of the simulation being $N = 2$.

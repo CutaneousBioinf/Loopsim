@@ -25,8 +25,7 @@ from .analyze import analyze_loop_file
 def bulk_analyze(loop_in_directory, intervals_file, overlapping_ratio_distribution_file, loop_out_directory):
     """Perform analysis on a distribution of loop files
 
-    If --loop-out-directory is not passed, this command will be like running 'analyze' on every file in LOOP_IN_DIRECTORY.
-    Otherwise, it will ONLY return a distribution of the overlapping ratios.
+    If --loop-out-directory is not passed, this command will be like running 'analyze' on every file in LOOP_IN_DIRECTORY (i.e it will not save the summary file for each file in LOOP_IN_DIRECTORY)
 
     NOTE: any data in --loop_out_directory may be overwritten!!
 
@@ -52,9 +51,8 @@ def bulk_analyze(loop_in_directory, intervals_file, overlapping_ratio_distributi
 
     # Do analysis for all input loop files
     ratios = []
-    if (
-        loop_out_directory
-    ):  # this if/else with repeated code is ugly as hell but probably worth the optimization (though with python idk ;) )
+    # this if/else with repeated code is ugly as hell but probably worth the optimization (though with python idk ;) )
+    if loop_out_directory:
         for i, filename in enumerate(os.listdir(loop_in_directory)):
             sim_file = os.path.join(loop_in_directory, filename)
             loop_out = analyze_loop_file(sim_file, intervals, ratios)
