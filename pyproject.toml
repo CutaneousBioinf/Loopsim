@@ -3,7 +3,7 @@ requires = ["setuptools>=59.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "LoopSim"
+name = "loopsim"
 version = "0.1.0"
 authors = [
   { name="Gideon Shaked", email="gshaked@umich.edu" },
@@ -15,7 +15,6 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-
 dependencies = [
     "pandas",
     "numpy",
