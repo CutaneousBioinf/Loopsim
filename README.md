@@ -174,7 +174,7 @@ Files after (though we don't use `loop_analyzed.loop` in the pipeline again):
 ```
 $ loopsim visualize ratios_out.txt dist_plot.jpg --other 0.034299968818210166
 Obtaining overlapping ratios from: ratios_out.txt.
-Exported plot to out1.jpg
+Exported plot to dist_plot.jpg
 
 Summary stats:
 Distribution mean: 0.0178775595052489
@@ -191,3 +191,5 @@ p-value: 0.0
 ```
 
 Note: $p = 0$ is probably an artifact of the simulation being $N = 2$.
+
+![distribution plot](./img/dist_plot.jpg)
