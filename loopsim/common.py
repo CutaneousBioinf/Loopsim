@@ -1,5 +1,4 @@
-"""stuff needed across modules in this package"""
-
+"""stuff needed across modules in this package, but we don't want it to be at the module level"""
 
 from detect_delimiter import detect
 

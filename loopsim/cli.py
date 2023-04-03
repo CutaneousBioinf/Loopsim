@@ -1,5 +1,7 @@
 import click
 
+from loopsim import __version__
+
 from . import common
 from .analyze import analyze
 from .bulk_analyze import bulk_analyze
@@ -15,9 +17,10 @@ from .visualize import visualize
     type=str,
     help="delimiter for outputted files [default: tab]",
 )
+@click.version_option(__version__)
 def cli(delimiter):
     """
-    For more thorough explanation of what every command does, please see the documentation.
+    For a more thorough explanation of what every command does, please see the documentation.
     """
     common.delimiter = delimiter
 
