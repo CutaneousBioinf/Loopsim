@@ -7,3 +7,5 @@ sims*
 junk/
 tables_out/
 build/
+dist/
+loop_out_dir/
