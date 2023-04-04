@@ -30,17 +30,17 @@ def simulate(loop_in_file, chromosome_region_file, simulation_data_directory, nu
 
     # Get data dir sorted out
     if not os.path.isdir(simulation_data_directory):
-        print("Simulation data directory does not exist.")
+        print("Simulation data directory does not exist.", flush=True)
         os.makedirs(simulation_data_directory)
-        print("Simulation data directory created!")
+        print("Simulation data directory created!", flush=True)
 
     # Print params
-    print(f"Input loop file: {loop_in_file}")
-    print(f"Chromosome regions file: {chromosome_region_file}")
-    print(f"Number of simulations: {num_sims}")
-    print(f"Number of processes: {num_processes}")
-    print(f"Outputting simulation files to directory: {simulation_data_directory}")
-    print(f"Delimiter for output: '{common.delimiter}'")
+    print(f"Input loop file: {loop_in_file}", flush=True)
+    print(f"Chromosome regions file: {chromosome_region_file}", flush=True)
+    print(f"Number of simulations: {num_sims}", flush=True)
+    print(f"Number of processes: {num_processes}", flush=True)
+    print(f"Outputting simulation files to directory: {simulation_data_directory}", flush=True)
+    print(f"Delimiter for output: '{common.delimiter}'", flush=True)
 
     # Read in loop data
     loop_in = pd.read_table(loop_in_file, header=None, delimiter=common.detect_delimiter(loop_in_file))
@@ -52,19 +52,23 @@ def simulate(loop_in_file, chromosome_region_file, simulation_data_directory, nu
     sim_names = range(num_sims)
     with mp.Pool(num_processes) as pool:
         completed_sims = pool.starmap(run_sim, [(loop_in, chr_rg, sim_name) for sim_name in sim_names])
+        print("Simulation processing complete!", flush=True)
+        pool.close()
+        pool.join()
+        print("Multiprocessing pool closed", flush=True)
 
     # Output simulated loop data to files
     for sim, sim_name in zip(completed_sims, sim_names):
         output_filepath = f"{simulation_data_directory}/sim_hi-c_{sim_name}.loop"
         sim.to_csv(output_filepath, header=None, index=None, sep=common.delimiter)
-        print(f"Simulation {sim_name} data outputted to file: {output_filepath}")
+        print(f"Simulation {sim_name} data outputted to file: {output_filepath}", flush=True)
 
 
 def run_sim(loop_in, chr_rg, sim_name):
     """Run simulation on all chromosomes"""
-    print(f"Simulation {sim_name} simulation started")
+    print(f"Simulation {sim_name} simulation started", flush=True)
     loop_out = split_by_chr(loop_in).apply(sim_chromosome, chr_rg=chr_rg)
-    print(f"Simulation {sim_name} simulation complete")
+    print(f"Simulation {sim_name} simulation complete", flush=True)
     return loop_out
 
 
