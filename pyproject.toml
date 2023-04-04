@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "loopsim"
-version = "0.1.0"
+version = "0.3.2"
 description = "A Fast Computational Tool for the Simulation and Analysis of Chromatin Loops"
 authors = ["Gideon Shaked <gshaked@umich.edu>"]
 maintainers = ["Gideon Shaked <gshaked@umich.edu>"]
@@ -22,19 +22,19 @@ packages = [{include = "loopsim"}]
 include = ["data/*"]
 
 [tool.poetry.dependencies]
-python = ">=3.8, <3.12"
-click = "8.1.3"
-numpy = "1.24.2"
-pandas = "1.5.3"
-scipy = "1.10.1"
-seaborn = "0.12.2"
-detect-delimiter = "0.1.1"
+python = ">=3.6"
+click = "*"
+detect-delimiter = "*"
+numpy = "*"
+pandas = "*"
+scipy = "*"
+seaborn = "*"
 
 [tool.poetry.scripts]
 loopsim = "loopsim.cli:cli"
 
 [tool.poetry.dev-dependencies]
-pre-commit = "^3.2.1"
+pre-commit = "*"
 
 [tool.isort]
 profile = "black"
