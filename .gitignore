@@ -10,3 +10,4 @@ build/
 dist/
 loop_out_dir/
 misc/
+dists*
