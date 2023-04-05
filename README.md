@@ -8,9 +8,7 @@
 ## Installation
 
 ```shell
-git clone https://github.com/CutaneousBioinf/hi-c
-cd hi-c
-python3 -m pip install .
+pip install loopsim
 ```
 
 You may receive a warning that is something like `The script loopsim is not on PATH`. You have two options to resolve this. 
