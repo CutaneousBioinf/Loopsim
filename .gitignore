@@ -1,8 +1,11 @@
+# Tool
 .vscode/
-out/
 __pycache__/
-todo
 *.egg-info
+
+# Data / process files
+out/
+todo
 sims*
 junk/
 tables_out/
@@ -11,3 +14,8 @@ dist/
 loop_out_dir/
 misc/
 dists*
+old_code/
+recovered-poster-files/
+notebooks/
+pub-data/
+all_ratios.txt
