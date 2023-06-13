@@ -5,7 +5,7 @@ __pycache__/
 
 # Data / process files
 out/
-todo
+todo*
 sims*
 junk/
 tables_out/
