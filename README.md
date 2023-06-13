@@ -1,10 +1,5 @@
 # LoopSim
 
-## TODO:
-
-- [x] complete pipeline
-- [?] improve performance (may be as good as can get on python -- probably just move to SLURM)
-
 ## Installation
 
 ```shell
@@ -76,10 +71,10 @@ Options:
 ### Validate
 
 ```shell
-$ loopsim validate data/merged_5K_10K.loop loop_valid.loop data/chr_region_hg19
-Input loop file: data/merged_5K_10K.loop
+$ loopsim validate example_data/merged_5K_10K.loop loop_valid.loop example_data/chr_region_hg19
+Input loop file: example_data/merged_5K_10K.loop
 Output loop file: loop_valid.loop
-Chromosome regions file: data/chr_region_hg19
+Chromosome regions file: example_data/chr_region_hg19
 Flagging loop ends that are >= 1.000000e+05
 Delimiter for output: ' '
 Validating loop data
@@ -97,15 +92,15 @@ Files after:
 ### Simulate
 
 ```shell
-$ loopsim simulate --num-sims 2 loop_valid.loop data/chr_region_hg19 sims/
+$ loopsim simulate --num-sims 2 loop_valid.loop example_data/chr_region_hg19 sims/
 Input loop file: loop_valid.loop
-Chromosome regions file: data/chr_region_hg19
+Chromosome regions file: example_data/chr_region_hg19
 Number of simulations: 2
 Number of processes: 5
 Outputting simulation files to directory: sims/
 Delimiter for output: ' '
 Simulation 0 simulation started
-Simulation 1 simulation started
+Simulation 1 simulation start
 Simulation 0 simulation complete
 Simulation 1 simulation complete
 Simulation 0 data outputted to file: sims/sim_hi-c_0.loop
@@ -126,9 +121,9 @@ Files after:
 **Bulk analysis:**
 
 ```shell
-$ loopsim bulk-analyze sims/ data/95_BCS_psor_loci ratios_out.txt --loop-out-directory loop_out_dir/
+$ loopsim bulk-analyze sims/ example_data/95_BCS_psor_loci ratios_out.txt --loop-out-directory loop_out_dir/
 Input loop files directory: sims/
-Intervals file: data/95_BCS_psor_loci
+Intervals file: example_data/95_BCS_psor_loci
 Ratio distribution file: ratios_out.txt
 Delimiter for output: ' '
 Output loop files directory: loop_out_dir/
@@ -151,10 +146,10 @@ Files after:
 **Analysis of the original file (validated):**
 
 ```shell
-$ loopsim analyze loop_valid.loop loop_analyzed.loop data/95_BCS_psor_loci
+$ loopsim analyze loop_valid.loop loop_analyzed.loop example_data/95_BCS_psor_loci
 Input loop file: loop_valid.loop
 Output loop file: loop_analyzed.loop
-Intervals file: data/95_BCS_psor_loci
+Intervals file: example_data/95_BCS_psor_loci
 Delimiter for output: ' '
 Outputted analyzed loop file to loop_analyzed.loop
 Ratio of overlapping intervals out of the total number of loops was: 0.034299968818210166
