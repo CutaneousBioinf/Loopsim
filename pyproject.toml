@@ -9,16 +9,12 @@ description = "A Fast Computational Tool for the Simulation and Analysis of Chro
 authors = ["Gideon Shaked <gshaked@umich.edu>"]
 maintainers = ["Gideon Shaked <gshaked@umich.edu>"]
 readme = "README.md"
-homepage = "https://github.com/CutaneousBioinf/Hi-C"
-repository = "https://github.com/CutaneousBioinf/Hi-C"
+homepage = "https://github.com/CutaneousBioinf/loopsim"
+repository = "https://github.com/CutaneousBioinf/loopsim"
 classifiers = ["Environment :: Console",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.8",
         "Natural Language :: English"]
 
 packages = [{include = "loopsim"}]

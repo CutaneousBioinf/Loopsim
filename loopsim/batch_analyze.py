@@ -21,7 +21,7 @@ from .analyze import analyze_loop_file
     type=click.Path(exists=False, file_okay=False, dir_okay=True, writable=True),
     help="if passed, will output summary table for each file in LOOP_IN_DIRECTORY to specified directory (omit for speed)",
 )
-def bulk_analyze(loop_in_directory, intervals_file, overlapping_ratio_distribution_file, loop_out_directory):
+def batch_analyze(loop_in_directory, intervals_file, overlapping_ratio_distribution_file, loop_out_directory):
     """Perform analysis on a distribution of loop files
 
     If --loop-out-directory is not passed, this command will be like running 'analyze' on every file in LOOP_IN_DIRECTORY (i.e it will not save the summary file for each file in LOOP_IN_DIRECTORY)

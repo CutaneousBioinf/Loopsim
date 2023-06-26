@@ -1,14 +1,36 @@
 # LoopSim
 
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [With `pip`](#with-pip)
+  - [From GitHub](#from-github)
+  - [From source](#from-source)
+- [Overview](#overview-of-the-loopsim-pipeline)
+- [CLI Reference](#cli-reference)
+- [Tutorial](#tutorial)
+  1. [Validation](#validation)
+  2. [Simulation](#simulation)
+  3. [Analysis](#analysis)
+      - [Batch Analysis](#batch-analysis)
+      - [Single-file Analysis](#single-file-analysis)
+  4. [Visualization](#visualization)
+
+## Requirements
+
+`loopsim` was tested with the following environment:
+
+- Python >=3.8
+- Linux (Ubuntu 20.04 LTS)
+
 ## Installation
 
-### From `pip`
+### With `pip`
 
 ```shell
 pip install loopsim
 ```
 
-### Directly from GitHub
+### From GitHub
 
 ```shell
 pip install git+https://github.com/CutaneousBioinf/loopsim 
@@ -19,21 +41,22 @@ pip install git+https://github.com/CutaneousBioinf/loopsim
 ```
 git clone https://github.com/CutaneousBioinf/loopsim
 cd loopsim
+poetry install
+```
 
 
+## Overview of the `loopsim` pipeline
 
-## Using the pipeline
-
-LoopSim is broken down into a number of different commands, which are designed to be chained.
+LoopSim is broken down into a number of different commands, which are designed to run in a pipeline.
 
 The process should look something like this:
 
 1. `loopsim validate` - This step validates the input data and possibly removes any erroneous data.
 2. `loopsim simulate` - This produces a distribution of simulated loop files. Note that this may be a very intensive task, depending on the number of simulations you require. I recommend that anything >30 simulations be done with multiple batches, possibly as a collection of SLURM jobs.
-3. `loopsim analyze` / `loopsim bulk-analyze` - Use `bulk-analyze` to produce summary tables with overlaps for the simulated distribution of loop files. Use `analyze` to do the same for single loop files, such as the original.
+3. `loopsim analyze` / `loopsim batch-analyze` - Use `batch-analyze` to produce summary tables with overlaps for the simulated distribution of loop files. Use `analyze` to do the same for single loop files, such as the original.
 4. `loopsim visualize` - Use this to produce visualizations, summary statistics, and to perform a statistical test on the simulated distribution and the original loop file.
 
-## CLI
+## CLI Reference
 
 You can run `loopsim --help` for a broad overview of each of the commands.
 
@@ -50,7 +73,7 @@ Options:
 
 Commands:
   analyze       Perform analysis on a single loop file
-  bulk-analyze  Perform analysis on a distribution of loop files
+  batch-analyze  Perform analysis on a distribution of loop files
   simulate      Generate a distribution of simulations.
   validate      Validate input file and output a validated version.
   visualize     Get visualization and stats from distribution of ratios...
@@ -77,9 +100,14 @@ Options:
   --help                   Show this message and exit.
 ```
 
-## Demo
+## Tutorial
 
-### Validate
+Below, you can find a guided walkthrough of the `loopsim` tool.
+
+To follow along with the guided walkthrough, just download the repository and install `loopsim`.
+The `loopsim` repository includes all the necessary example files.
+
+### Validation
 
 ```shell
 $ loopsim validate example_data/merged_5K_10K.loop loop_valid.loop example_data/chr_region_hg19
@@ -100,7 +128,7 @@ Files after:
 └── loop_out.loop
 ```
 
-### Simulate
+### Simulation
 
 ```shell
 $ loopsim simulate --num-sims 2 loop_valid.loop example_data/chr_region_hg19 sims/
@@ -127,12 +155,12 @@ Files after:
     └── sim_hi-c_1.loop
 ```
 
-### Analyze
+### Analysis
 
-**Bulk analysis:**
+#### **Batch Analysis**
 
 ```shell
-$ loopsim bulk-analyze sims/ example_data/95_BCS_psor_loci ratios_out.txt --loop-out-directory loop_out_dir/
+$ loopsim batch-analyze sims/ example_data/95_BCS_psor_loci ratios_out.txt --loop-out-directory loop_out_dir/
 Input loop files directory: sims/
 Intervals file: example_data/95_BCS_psor_loci
 Ratio distribution file: ratios_out.txt
@@ -154,7 +182,7 @@ Files after:
     └── summary_table_1.loop
 ```
 
-**Analysis of the original file (validated):**
+#### **Single-file Analysis:**
 
 ```shell
 $ loopsim analyze loop_valid.loop loop_analyzed.loop example_data/95_BCS_psor_loci
@@ -173,7 +201,7 @@ Files after (though we don't use `loop_analyzed.loop` in the pipeline again):
 └── loop_analyzed.loop
 ```
 
-## Visualize
+## Visualization
 
 ```
 $ loopsim visualize ratios_out.txt dist_plot.jpg --other 0.034299968818210166
@@ -194,6 +222,6 @@ Calculating p-value based on normal distribution:
 p-value: 0.0
 ```
 
-Note: $p = 0$ is probably an artifact of the simulation being $N = 2$.
+Note: The rather odd looking distribution plot and $p = 0$ are artifacts of the simulation being $N = 2$.
 
 ![distribution plot](./img/dist_plot.jpg)

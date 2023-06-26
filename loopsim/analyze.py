@@ -39,7 +39,7 @@ def analyze(loop_in_file, loop_out_file, intervals_file):
 
 
 def analyze_loop_file(loop_in_file, intervals, ratios):
-    """ratios isn't used here but is used for bulk analysis"""
+    """ratios isn't used here but is used for batch analysis"""
     loop_in = pd.read_table(loop_in_file, header=None, delimiter=common.detect_delimiter(loop_in_file))
 
     loop_in[0] = loop_in[0].astype("unicode")
