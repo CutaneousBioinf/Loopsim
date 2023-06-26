@@ -2,18 +2,29 @@
 
 ## Installation
 
+### From `pip`
+
 ```shell
 pip install loopsim
 ```
 
-You may receive a warning that is something like `The script loopsim is not on PATH`. You have two options to resolve this. 
+### Directly from GitHub
 
-- Option one: add the directory with the LoopSim entry point to your `$PATH` environment variable. 
-- Option two: invoke LoopSim with `python3 -m loopsim` as opposed to just `loopsim`.
+```shell
+pip install git+https://github.com/CutaneousBioinf/loopsim 
+```
+
+### From source
+
+```
+git clone https://github.com/CutaneousBioinf/loopsim
+cd loopsim
+
+
 
 ## Using the pipeline
 
-LoopSim is brokeen down into a number of different commands, which are designed to be chained.
+LoopSim is broken down into a number of different commands, which are designed to be chained.
 
 The process should look something like this:
 
