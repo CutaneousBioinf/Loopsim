@@ -107,6 +107,13 @@ Below, you can find a guided walkthrough of the `loopsim` tool.
 To follow along with the guided walkthrough, just download the repository and install `loopsim`.
 The `loopsim` repository includes all the necessary example files.
 
+1. [Validation](#validation)
+2. [Simulation](#simulation)
+3. [Analysis](#analysis)
+    - [Batch Analysis](#batch-analysis)
+    - [Single-file Analysis](#single-file-analysis)
+4. [Visualization](#visualization)
+
 ### Validation
 
 ```shell
