@@ -24,7 +24,7 @@ Loopsim was tested with the following environment:
 
 ## Installation
 
-### With `pip`
+### With pip
 
 ```shell
 pip install loopsim
