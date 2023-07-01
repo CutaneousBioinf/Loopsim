@@ -5,17 +5,16 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "loopsim"
 version = "0.3.3"
-description = "A Fast Computational Tool for the Simulation and Analysis of Chromatin Loops"
+description = "Loopsim: A Fast Computational Tool for the Simulation and Analysis of Chromatin Loops"
 authors = ["Gideon Shaked <gshaked@umich.edu>"]
 maintainers = ["Gideon Shaked <gshaked@umich.edu>"]
-readme = "README.md"
-homepage = "https://github.com/CutaneousBioinf/loopsim"
 repository = "https://github.com/CutaneousBioinf/loopsim"
 classifiers = ["Environment :: Console",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.8",
         "Natural Language :: English"]
+license = "MIT"
 
 packages = [{include = "loopsim"}]
 
