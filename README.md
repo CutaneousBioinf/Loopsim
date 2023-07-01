@@ -1,4 +1,4 @@
-# LoopSim
+# Loopsim
 
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -17,7 +17,7 @@
 
 ## Requirements
 
-`loopsim` was tested with the following environment:
+Loopsim was tested with the following environment:
 
 - Python >=3.8
 - Linux (Ubuntu 20.04 LTS)
@@ -38,7 +38,7 @@ pip install git+https://github.com/CutaneousBioinf/loopsim
 
 ### From source
 
-```
+```shell
 git clone https://github.com/CutaneousBioinf/loopsim
 cd loopsim
 
@@ -50,9 +50,9 @@ poetry install
 ```
 
 
-## Overview of the `loopsim` pipeline
+## Overview of the Loopsim pipeline
 
-LoopSim is broken down into a number of different commands, which are designed to run in a pipeline.
+Loopsim is broken down into a number of different commands, which are designed to run in a pipeline.
 
 The process should look something like this:
 
@@ -107,10 +107,10 @@ Options:
 
 ## Tutorial
 
-Below, you can find a guided walkthrough of the `loopsim` tool.
+Below, you can find a guided walkthrough of the Loopsim tool.
 
-To follow along with the guided walkthrough, just download the repository and install `loopsim`.
-The `loopsim` repository includes all the necessary example files.
+To follow along with the guided walkthrough, just download the repository and install Loopsim.
+The Loopsim repository includes all the necessary example files.
 
 1. [Validation](#validation)
 2. [Simulation](#simulation)
