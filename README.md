@@ -2,7 +2,7 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-  - [With `pip`](#with-pip)
+  - [With pip](#with-pip)
   - [From GitHub](#from-github)
   - [From source](#from-source)
 - [Overview](#overview-of-the-loopsim-pipeline)
@@ -33,14 +33,14 @@ pip install loopsim
 ### From GitHub
 
 ```shell
-pip install git+https://github.com/CutaneousBioinf/loopsim 
+pip install git+https://github.com/CutaneousBioinf/Loopsim 
 ```
 
 ### From source
 
 ```shell
-git clone https://github.com/CutaneousBioinf/loopsim
-cd loopsim
+git clone https://github.com/CutaneousBioinf/Loopsim
+cd Loopsim
 
 # Option 1: pip
 pip install .
@@ -48,7 +48,6 @@ pip install .
 # Option 2: poetry
 poetry install
 ```
-
 
 ## Overview of the Loopsim pipeline
 
