@@ -41,6 +41,11 @@ pip install git+https://github.com/CutaneousBioinf/loopsim
 ```
 git clone https://github.com/CutaneousBioinf/loopsim
 cd loopsim
+
+# Option 1: pip
+pip install .
+
+# Option 2: poetry
 poetry install
 ```
 
