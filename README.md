@@ -5,7 +5,7 @@
   - [With pip](#with-pip)
   - [From GitHub](#from-github)
   - [From source](#from-source)
-- [Overview](#overview-of-the-loopsim-pipeline)
+- [Basic Usage](#basic-usage)
 - [CLI Reference](#cli-reference)
 - [Tutorial](#tutorial)
   1. [Validation](#validation)
@@ -49,7 +49,7 @@ pip install .
 poetry install
 ```
 
-## Overview of the Loopsim pipeline
+## Basic Usage
 
 Loopsim is broken down into a number of different commands, which are designed to run in a pipeline.
 
