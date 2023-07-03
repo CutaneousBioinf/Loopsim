@@ -66,21 +66,22 @@ You can run `loopsim --help` for a broad overview of each of the commands.
 
 ```shell
 $ loopsim --help
-Usage: python -m loopsim [OPTIONS] COMMAND [ARGS]...
+Usage: loopsim [OPTIONS] COMMAND [ARGS]...
 
-  For more explanation of what every command does, please see the
+  For a more thorough explanation of what every command does, please see the
   documentation.
 
 Options:
   --delimiter TEXT  delimiter for outputted files [default: tab]
+  --version         Show the version and exit.
   --help            Show this message and exit.
 
 Commands:
-  analyze       Perform analysis on a single loop file
+  analyze        Perform analysis on a single loop file
   batch-analyze  Perform analysis on a distribution of loop files
-  simulate      Generate a distribution of simulations.
-  validate      Validate input file and output a validated version.
-  visualize     Get visualization and stats from distribution of ratios...
+  simulate       Generate a distribution of simulations
+  validate       Validate input file and output a validated version
+  visualize      Get visualization and stats from distribution of ratios
 ```
 
 You can also run `loopsim <COMMAND> --help` for more detailed help messages on each of the commands.
@@ -89,7 +90,7 @@ For example, here is the help message for `simulate`:
 
 ```shell
 $ loopsim simulate --help
-Usage: python -m loopsim simulate [OPTIONS] LOOP_IN_FILE
+Usage: loopsim simulate [OPTIONS] LOOP_IN_FILE
                                   CHROMOSOME_REGION_FILE
                                   SIMULATION_DATA_DIRECTORY
 
