@@ -5,6 +5,7 @@
   - [With pip](#with-pip)
   - [From GitHub](#from-github)
   - [From source](#from-source)
+- [Input Files Format](#input-files-format)
 - [Basic Usage](#basic-usage)
 - [CLI Reference](#cli-reference)
 - [Tutorial](#tutorial)
@@ -51,17 +52,44 @@ poetry install
 
 ## Input Files Format
 
-The Loopsim pipeline requires three types of files as described below.
+The Loopsim pipeline requires three types of files:
 
 - **Type Name:** Chromatin loop file
   - Purpose: Store chromatin loop (Hi-C) data
-  - Format: Delimiter-separated values file. Each row is 6 columns.
+  - Format: Delimiter-separated values file. Each row represents one chromatin loop.
 
-    Columns (from left to right) are as follows:
+    Columns:
+
+    | Start region chromosome | First loci of start region | Last loci of start region | End region chromosome | First loci of end region | Last loci of end region |
+    |:---:|:---:|:---:|:---:|:---:|:---:|
+
+  - Example: [merged_5K_10K.loop](./example_data/merged_5K_10K.loop)
+
+- **Type Name:** Chromosome region file
+  - Purpose: ?
+  - Format: Delimiter-separated values file. Each row represents one chromosome region.
+
+    Columns:
+
+    | Chromosome | ? | ? |
+    |:---:|:---:|:---:|
+
+  - Example: [chr_region_hg19.loop](./example_data/chr_region_hg19)
+
+- **Type Name:** Genomic regions of interest
+  - Purpose: Store genomic regions of interest to be checked against chromatin loop file
+  - Format: Delimiter-separated values file. Each row represents a genomic region of interest.
+
+    Columns:
+
+    | Chromosome | Start loci of region | End loci of region |
+    |:---:|:---:|:---:|
+
+  - Example: [95_BCS_psor_loci.loop](./example_data/95_BCS_psor_loci)
 
 ## Basic Usage
 
-Loopsim is broken down into a number of different commands, which are designed to run in a pipeline as is described in the table below.
+Loopsim is broken down into a number of different commands:
 
 | Step | Command                                 | Command Description                                                                                                                                                                                                                                                |
 |:---------------:|:----------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
