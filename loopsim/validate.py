@@ -16,10 +16,18 @@ from . import common
     show_default=True,
     default=100_000,
     type=int,
-    help="warn on loop ends that are sized >= this param",
+    help="Flag loop ends that are sized >= this param",
 )
 def validate(loop_in_file, loop_out_file, chromosome_region_file, flag_end_size):
     """Validate input file and output a validated version
+
+    Check that each row satisfies the following criteria:
+     - Start region size and end region size are the same size -> (print warning)
+     - Start region and end region both proceed in a positive direction -- i.e. 2nd column < 3rd column and 5th column < 6th column -> (print warning)
+     - Start region and end region do not overlap -> (print warning)
+     - End region is after start region -> (print warning and swap start region with end region)
+     - Chromosome of start region is the same as chromosome of end region -> (print warning and remove affected row)
+     - Start region size and end region size are less than value passed to --flag-end-size (default 100K) -> (print warning and remove affected row)
 
     NOTE: the validated file (LOOP_OUT_FILE) may be unchanged from the original."""
 
