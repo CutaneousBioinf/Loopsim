@@ -51,10 +51,13 @@ poetry install
 
 ## Input Files Format
 
-The Loopsim pipeline requires three types of files:
+The Loopsim pipeline requires three types of files as described below.
 
-1. **Loop file:**
-      - 
+- **Type Name:** Chromatin loop file
+  - Purpose: Store chromatin loop (Hi-C) data
+  - Format: Delimiter-separated values file. Each row is 6 columns.
+
+    Columns (from left to right) are as follows:
 
 ## Basic Usage
 
