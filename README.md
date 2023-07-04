@@ -49,16 +49,23 @@ pip install .
 poetry install
 ```
 
+## Input Files Format
+
+The Loopsim pipeline requires three types of files:
+
+1. **Loop file:**
+      - 
+
 ## Basic Usage
 
-Loopsim is broken down into a number of different commands, which are designed to run in a pipeline.
+Loopsim is broken down into a number of different commands, which are designed to run in a pipeline as is described in the table below.
 
-The process should look something like this:
-
-1. `loopsim validate` - This step validates the input data and possibly removes any erroneous data.
-2. `loopsim simulate` - This produces a distribution of simulated loop files. Note that this may be a very intensive task, depending on the number of simulations you require. I recommend that anything >30 simulations be done with multiple batches, possibly as a collection of SLURM jobs.
-3. `loopsim analyze` / `loopsim batch-analyze` - Use `batch-analyze` to produce summary tables with overlaps for the simulated distribution of loop files. Use `analyze` to do the same for single loop files, such as the original.
-4. `loopsim visualize` - Use this to produce visualizations, summary statistics, and to perform a statistical test on the simulated distribution and the original loop file.
+| Step | Command                                 | Command Description                                                                                                                                                                                                                                                |
+|:---------------:|:----------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1             | `validate`                           | Validates the inputted loop file. Issues warnings about possibly erroneous data and removes some types of erroneous data.                                                                                                                                          |
+| 2             | `simulate`                           | Produces a distribution of simulated loop files. Note that this may be a very intensive task, depending on the number of simulations you require. I recommend that anything >30 simulations be done with multiple batches, possibly as a collection of SLURM jobs. |
+| 3             | `analyze` or `batch-analyze` | Use `batch-analyze` to produce summary tables with overlaps for the simulated distribution of loop files. Use `analyze` to do the same for single loop files, such as the original.                                                                                |
+| 4             | `visualize`                          | Produces visualizations, outputs summary statistics, and performs a statistical test with the simulated distribution and the original loop file.                                                                                                                   |
 
 ## CLI Reference
 
@@ -109,7 +116,7 @@ Options:
 
 Below, you can find a guided walkthrough of the Loopsim tool.
 
-To follow along with the guided walkthrough, just download the repository and install Loopsim.
+To follow along with the guided walkthrough, just download the repository and [install Loopsim](#installation).
 The Loopsim repository includes all the necessary example files.
 
 1. [Validation](#validation)
