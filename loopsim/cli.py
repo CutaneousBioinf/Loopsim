@@ -20,7 +20,7 @@ from .visualize import visualize
 @click.version_option(__version__)
 def cli(delimiter):
     """
-    For a more thorough explanation of what every command does, please see the documentation.
+    For a more thorough explanation of what every command does, please see the documentation or check an individual command's help text.
     """
     common.delimiter = delimiter
 
