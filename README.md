@@ -2,7 +2,7 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-  - [With pip](#with-pip)
+  - [With Pip](#with-pip)
   - [From GitHub](#from-github)
   - [From source](#from-source)
 - [Input Files Format](#input-files-format)
@@ -25,7 +25,7 @@ Loopsim was tested with the following environment:
 
 ## Installation
 
-### With pip
+### With Pip
 
 ```shell
 pip install loopsim
@@ -219,7 +219,7 @@ Simulation 1 data outputted to file: sims/sim_hi-c_1.loop
 
 ### Analysis
 
-#### **Batch Analysis**
+#### Batch Analysis
 
 ```console
 $ loopsim batch-analyze sims/ example_data/95_BCS_psor_loci ratios_out.txt --loop-out-directory loop_out_dir/
