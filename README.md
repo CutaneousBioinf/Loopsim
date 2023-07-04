@@ -12,8 +12,8 @@
   1. [Validation](#validation)
   2. [Simulation](#simulation)
   3. [Analysis](#analysis)
-      - [Batch Analysis](#batch-analysis)
-      - [Single-file Analysis](#single-file-analysis)
+     - [Batch Analysis](#batch-analysis)
+     - [Single-file Analysis](#single-file-analysis)
   4. [Visualization](#visualization)
 
 ## Requirements
