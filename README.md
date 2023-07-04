@@ -106,7 +106,7 @@ Loopsim is broken down into a number of different commands:
 
 You can run `loopsim --help` for a broad overview of each of the commands.
 
-```shell
+```console
 $ loopsim --help
 Usage: loopsim [OPTIONS] COMMAND [ARGS]...
 
@@ -130,7 +130,7 @@ You can also run `loopsim <COMMAND> --help` for more detailed help messages on e
 
 For example, here is the help message for `simulate`:
 
-```shell
+```console
 $ loopsim simulate --help
 Usage: loopsim simulate [OPTIONS] LOOP_IN_FILE
                                   CHROMOSOME_REGION_FILE
@@ -163,7 +163,7 @@ The Loopsim repository includes all the necessary example files.
 
 ### Validation
 
-```shell
+```console
 $ loopsim validate example_data/merged_5K_10K.loop loop_valid.loop example_data/chr_region_hg19
 Input loop file: example_data/merged_5K_10K.loop
 Output loop file: loop_valid.loop
@@ -188,7 +188,7 @@ Validated data outputted to file loop_valid.loop
 
 ### Simulation
 
-```shell
+```console
 $ loopsim simulate --num-sims 2 loop_valid.loop example_data/chr_region_hg19 sims/
 Input loop file: loop_valid.loop
 Chromosome regions file: example_data/chr_region_hg19
@@ -221,7 +221,7 @@ Simulation 1 data outputted to file: sims/sim_hi-c_1.loop
 
 #### **Batch Analysis**
 
-```shell
+```console
 $ loopsim batch-analyze sims/ example_data/95_BCS_psor_loci ratios_out.txt --loop-out-directory loop_out_dir/
 Input loop files directory: sims/
 Intervals file: example_data/95_BCS_psor_loci
@@ -250,7 +250,7 @@ Finished outputting ratio distribution to ratios_out.txt
 
 #### **Single-file Analysis:**
 
-```shell
+```console
 $ loopsim analyze loop_valid.loop loop_analyzed.loop example_data/95_BCS_psor_loci
 Input loop file: loop_valid.loop
 Output loop file: loop_analyzed.loop
@@ -273,7 +273,7 @@ Ratio of overlapping intervals out of the total number of loops was: 0.034299968
 
 ## Visualization
 
-```
+```console
 $ loopsim visualize ratios_out.txt dist_plot.jpg --other 0.034299968818210166
 Obtaining overlapping ratios from: ratios_out.txt.
 Exported plot to dist_plot.jpg
