@@ -98,6 +98,10 @@ Loopsim is broken down into a number of different commands:
 | 3             | `analyze` or `batch-analyze` | Use `batch-analyze` to produce summary tables with overlaps for the simulated distribution of loop files. Use `analyze` to do the same for single loop files, such as the original.                                                                                |
 | 4             | `visualize`                          | Produces visualizations, outputs summary statistics, and performs a statistical test with the simulated distribution and the original loop file.                                                                                                                   |
 
+| ![Loopsim pipeline diagram](./img/loopsim_flowchart.jpg) | 
+|:--:| 
+| Loopsim pipeline with the optional simulated background distribution |
+
 ## CLI Reference
 
 You can run `loopsim --help` for a broad overview of each of the commands.
