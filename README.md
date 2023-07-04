@@ -248,7 +248,7 @@ Finished outputting ratio distribution to ratios_out.txt
 
 </details>
 
-#### **Single-file Analysis:**
+#### Single-file Analysis
 
 ```console
 $ loopsim analyze loop_valid.loop loop_analyzed.loop example_data/95_BCS_psor_loci
