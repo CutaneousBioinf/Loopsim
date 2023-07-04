@@ -58,7 +58,7 @@ The Loopsim pipeline requires three types of files:
   - Purpose: Store chromatin loop (Hi-C) data
   - Format: Delimiter-separated values file. Each row represents one chromatin loop.
 
-    Columns:
+    Columns are as follows:
 
     | Start region chromosome | First loci of start region | Last loci of start region | End region chromosome | First loci of end region | Last loci of end region |
     |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -69,7 +69,7 @@ The Loopsim pipeline requires three types of files:
   - Purpose: ?
   - Format: Delimiter-separated values file. Each row represents one chromosome region.
 
-    Columns:
+    Columns are as follows:
 
     | Chromosome | ? | ? |
     |:---:|:---:|:---:|
@@ -80,7 +80,7 @@ The Loopsim pipeline requires three types of files:
   - Purpose: Store genomic regions of interest to be checked against chromatin loop file
   - Format: Delimiter-separated values file. Each row represents a genomic region of interest.
 
-    Columns:
+    Columns are as follows:
 
     | Chromosome | Start loci of region | End loci of region |
     |:---:|:---:|:---:|
@@ -171,12 +171,16 @@ Validation complete
 Validated data outputted to file loop_valid.loop
 ```
 
-Files after:
+<details>
+
+<summary>Files after:</summary>
 
 ```
 .
 └── loop_out.loop
 ```
+
+</details>
 
 ### Simulation
 
@@ -196,7 +200,9 @@ Simulation 0 data outputted to file: sims/sim_hi-c_0.loop
 Simulation 1 data outputted to file: sims/sim_hi-c_1.loop
 ```
 
-Files after:
+<details>
+
+<summary>Files after:</summary>
 
 ```
 .
@@ -204,6 +210,8 @@ Files after:
     |── sim_hi-c_0.loop
     └── sim_hi-c_1.loop
 ```
+
+</details>
 
 ### Analysis
 
@@ -222,7 +230,9 @@ Finished outputting analyzed files to loop_out_dir/
 Finished outputting ratio distribution to ratios_out.txt
 ```
 
-Files after:
+<details>
+
+<summary>Files after:</summary>
 
 ```
 .
@@ -231,6 +241,8 @@ Files after:
     |── summary_table_0.loop
     └── summary_table_1.loop
 ```
+
+</details>
 
 #### **Single-file Analysis:**
 
@@ -244,12 +256,16 @@ Outputted analyzed loop file to loop_analyzed.loop
 Ratio of overlapping intervals out of the total number of loops was: 0.034299968818210166
 ```
 
-Files after (though we don't use `loop_analyzed.loop` in the pipeline again):
+<details>
+
+<summary>Files after (though we don't use `loop_analyzed.loop` in the pipeline again):</summary>
 
 ```
 .
 └── loop_analyzed.loop
 ```
+
+</details>
 
 ## Visualization
 
