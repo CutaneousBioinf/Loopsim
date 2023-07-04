@@ -1,4 +1,4 @@
-"""BULK loop analysis and empirical distribution"""
+"""Batch loop analysis and empirical distribution"""
 # Invariant: we are assuming that the loop files passed in are all valid
 
 import os
