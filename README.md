@@ -74,7 +74,7 @@ The Loopsim pipeline requires three types of files:
     | Chromosome | ? | ? |
     |:---:|:---:|:---:|
 
-  - Example: [chr_region_hg19.loop](./example_data/chr_region_hg19)
+  - Example: [chr_region_hg19](./example_data/chr_region_hg19)
 
 - **Type Name:** Genomic regions of interest
   - Purpose: Store genomic regions of interest to be checked against chromatin loop file
@@ -85,7 +85,7 @@ The Loopsim pipeline requires three types of files:
     | Chromosome | Start loci of region | End loci of region |
     |:---:|:---:|:---:|
 
-  - Example: [95_BCS_psor_loci.loop](./example_data/95_BCS_psor_loci)
+  - Example: [95_BCS_psor_loci](./example_data/95_BCS_psor_loci)
 
 ## Basic Usage
 
