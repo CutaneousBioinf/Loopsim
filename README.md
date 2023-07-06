@@ -262,7 +262,9 @@ Ratio of overlapping intervals out of the total number of loops was: 0.034299968
 
 <details>
 
-<summary>Files after (though we don't use `loop_analyzed.loop` in the pipeline again):</summary>
+<summary>Files after:</summary>
+
+> Note: We don't use `loop_analyzed.loop` in the pipeline again.
 
 ```
 .
@@ -292,6 +294,14 @@ Calculating p-value based on normal distribution:
 p-value: 0.0
 ```
 
-Note: The rather odd looking distribution plot and $p = 0$ are artifacts of the simulation being $N = 2$.
+<details>
 
-![distribution plot](./img/dist_plot.jpg)
+<summary>Plot</summary>
+
+> Note: The rather odd looking distribution plot and $p = 0$ are artifacts of the simulation being $N = 2$.
+
+| ![Loopsim Distribution Plot](./img/dist_plot.jpg) |
+|:--:|
+| `dist_plot.jpg` |
+
+</details>
