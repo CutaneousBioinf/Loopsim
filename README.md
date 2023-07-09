@@ -1,5 +1,9 @@
 # Loopsim
 
+<div style="text-align: center;">
+<img alt="PyPI" src="https://img.shields.io/pypi/v/loopsim">
+</div>
+
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [With Pip](#with-pip)
