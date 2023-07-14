@@ -70,12 +70,12 @@ The Loopsim pipeline requires three types of files:
   - Example: [merged_5K_10K.loop](./example_data/merged_5K_10K.loop)
 
 - **Type Name:** Chromosome region file
-  - Purpose: ?
+  - Purpose: Defines the region of each chromosome
   - Format: Delimiter-separated values file. Each row represents one chromosome region.
 
     Columns are as follows:
 
-    | Chromosome | ? | ? |
+    | Chromosome | Start position | End position |
     |:---:|:---:|:---:|
 
   - Example: [chr_region_hg19](./example_data/chr_region_hg19)
