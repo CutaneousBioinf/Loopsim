@@ -1,8 +1,8 @@
 # Loopsim
 
-<div style="text-align: center;">
-<img alt="PyPI" src="https://img.shields.io/pypi/v/loopsim">
-</div>
+<p align="center">
+<a href="https://pypi.org/project/loopsim"><img alt="PyPI" src="https://img.shields.io/pypi/v/loopsim"></a>
+</p>
 
 - [Requirements](#requirements)
 - [Installation](#installation)
