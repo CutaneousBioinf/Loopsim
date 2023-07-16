@@ -1,7 +1,9 @@
 # Loopsim
 
 <p align="center">
-<a href="https://pypi.org/project/loopsim"><img alt="PyPI" src="https://img.shields.io/pypi/v/loopsim"></a>
+<a href="https://pypi.org/project/loopsim"><img alt="PyPI" src="https://img.shields.io/pypi/v/loopsim?logo=pypi&label=PyPI&color=green
+"></a>
+<a href=""><img alt="GitHub" src="https://img.shields.io/github/v/release/CutaneousBioinf/Loopsim?logo=github&label=GitHub%20Release"></a>
 </p>
 
 - [Requirements](#requirements)
