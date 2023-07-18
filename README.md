@@ -106,7 +106,7 @@ Loopsim is broken down into a number of different commands:
 
 | ![Loopsim pipeline diagram](./img/loopsim_flowchart.jpg) | 
 |:--:| 
-| Loopsim pipeline with the optional simulated background distribution |
+| Loopsim pipeline |
 
 ## CLI Reference
 
