@@ -7,8 +7,3 @@ repos:
     rev: 5.12.0
     hooks:
       - id: isort
-  - repo: github.com/macisamuele/language-formatters-pre-commit-hooks 
-    rev: v0.0.1
-    hooks:
-      - id: pretty-format-toml
-      - id: pretty-format-yaml

@@ -88,8 +88,8 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
 
     chr = loop_chr_in.loc[loop_chr_in.first_valid_index(), 0]  # Get the chromosome number
 
-    a = chr_rg[chr_rg[0] == chr]  # Region num for current chromosome
-    ran = int(a[2])  # ! Need this or pandas does weird things
+    a = chr_rg[chr_rg[0] == chr]  # Region num for current chromosome (range of chromosome)
+    chromosome_length = int(a[2])  # ! Need this or pandas does weird things
 
     # The output df should have the same dimensions as the input df
     loop_chr_out = pd.DataFrame(np.empty(loop_chr_in.shape), dtype=object)
@@ -97,9 +97,9 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     # Fill in the first row
     prev_row_out = loop_chr_out.loc[0] = sim_chromosome_helper(
         chr=chr,
-        ran=ran,
-        res=loop_chr_in.loc[loop_chr_in.first_valid_index(), 2] - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
-        len_=loop_chr_in.loc[loop_chr_in.first_valid_index(), 4] - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
+        chromosome_length=chromosome_length,
+        loop_resolution=loop_chr_in.loc[loop_chr_in.first_valid_index(), 2] - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
+        loop_length=loop_chr_in.loc[loop_chr_in.first_valid_index(), 4] - loop_chr_in.loc[loop_chr_in.first_valid_index(), 1],
         random_state=random_state,
     )
 
@@ -110,25 +110,29 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     for iterations, row_in in enumerate(
         loop_chr_in.loc[loop_chr_in.first_valid_index() + 1 : loop_chr_in.last_valid_index() + 1].itertuples(index=False)
     ):
-        dist = row_in[1] - prev_row_in[1]
-        len_ = row_in[4] - row_in[1]
-        res = row_in[5] - row_in[4]
+        dist_to_prev_real_loop = row_in[1] - prev_row_in[1]  # dist
+        loop_length = row_in[4] - row_in[1]  # len_
+        loop_resolution = row_in[5] - row_in[4]  # res
 
-        if dist < 10**6 and (prev_row_out[2] + dist) < ran and (prev_row_out[2] + dist + len_) < ran:
+        if (
+            dist_to_prev_real_loop < 10**6
+            and (prev_row_out[2] + dist_to_prev_real_loop) < chromosome_length
+            and (prev_row_out[2] + dist_to_prev_real_loop + loop_length) < chromosome_length
+        ):
             row_out = [
                 chr,
-                prev_row_out[1] + dist,
-                prev_row_out[1] + dist + res,
+                prev_row_out[1] + dist_to_prev_real_loop,
+                prev_row_out[1] + dist_to_prev_real_loop + loop_resolution,
                 chr,
-                prev_row_out[1] + dist + len_,
-                prev_row_out[1] + dist + len_ + res,
+                prev_row_out[1] + dist_to_prev_real_loop + loop_length,
+                prev_row_out[1] + dist_to_prev_real_loop + loop_length + loop_resolution,
             ]
         else:
             row_out = sim_chromosome_helper(
                 chr=chr,
-                ran=ran,
-                res=row_in[2] - row_in[1],
-                len_=row_in[4] - row_in[1],
+                chromosome_length=chromosome_length,
+                loop_resolution=row_in[2] - row_in[1],
+                loop_length=row_in[4] - row_in[1],
                 random_state=random_state,
             )
 
@@ -138,14 +142,14 @@ def sim_chromosome(loop_chr_in: pd.DataFrame, chr_rg: pd.DataFrame):
     return loop_chr_out
 
 
-def sim_chromosome_helper(chr, ran, res, len_, random_state):
-    end1 = random_state.choice(np.arange((1 + res / 2), (ran - res / 2 - len_)))
-    end2 = end1 + len_
+def sim_chromosome_helper(chr, chromosome_length, loop_resolution, loop_length, random_state):
+    end1 = random_state.choice(np.arange((1 + loop_resolution / 2), (chromosome_length - loop_resolution / 2 - loop_length)))
+    end2 = end1 + loop_length
     return [
         chr,
-        end1 - res / 2,
-        end1 + res / 2,
+        end1 - loop_resolution / 2,
+        end1 + loop_resolution / 2,
         chr,
-        end2 - res / 2,
-        end2 + res / 2,
+        end2 - loop_resolution / 2,
+        end2 + loop_resolution / 2,
     ]
