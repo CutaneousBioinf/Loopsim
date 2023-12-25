@@ -62,7 +62,7 @@ The Loopsim pipeline requires three types of files:
 
 - **Type Name:** Chromatin loop file
   - Purpose: Store chromatin loop (Hi-C) data
-  - Format: Delimiter-separated values file. Each row represents one chromatin loop.
+  - Format: Delimiter-separated values file. Each row represents one chromatin loop. BEDPE format.
 
     Columns are as follows:
 
@@ -73,7 +73,7 @@ The Loopsim pipeline requires three types of files:
 
 - **Type Name:** Chromosome region file
   - Purpose: Defines the region of each chromosome
-  - Format: Delimiter-separated values file. Each row represents one chromosome region.
+  - Format: Delimiter-separated values file. Each row represents one chromosome region. BED format.
 
     Columns are as follows:
 
