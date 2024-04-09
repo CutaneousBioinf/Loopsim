@@ -4,15 +4,14 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "loopsim"
-version = "0.4.0"
-description = "Loopsim: Enrichment Analysis of Chromosome Conformation Capture Data with a Simulated Background Distribution"
+version = "0.5.0"
+description = "Loopsim: Enrichment Analysis of Chromosome Conformation Capture with Fast Empirical Distribution Simulation"
 authors = ["Gideon Shaked <gshaked@umich.edu>"]
 maintainers = ["Gideon Shaked <gshaked@umich.edu>"]
 repository = "https://github.com/CutaneousBioinf/loopsim"
 classifiers = ["Environment :: Console",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.8",
         "Natural Language :: English"]
 license = "MIT"
 
