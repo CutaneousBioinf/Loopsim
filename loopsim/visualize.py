@@ -3,14 +3,20 @@
 import click
 import pandas as pd
 import seaborn as sb
-from scipy.stats import norm
+from scipy.stats import norm, normaltest
 
 from . import common
 
 
 @click.command()
-@click.argument("distribution_file", type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True))
-@click.argument("plot_file", type=click.Path(exists=False, file_okay=True, dir_okay=False, writable=True))
+@click.argument(
+    "distribution_file",
+    type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True),
+)
+@click.argument(
+    "plot_file",
+    type=click.Path(exists=False, file_okay=True, dir_okay=False, writable=True),
+)
 @click.option(
     "--other",
     type=float,
@@ -27,12 +33,18 @@ def visualize(distribution_file, plot_file, other):
     print(f"Obtaining overlapping ratios from: {distribution_file}.")
 
     # Get data
-    dist = pd.read_table(distribution_file, header=None, delimiter=common.detect_delimiter(distribution_file))
+    dist = pd.read_table(
+        distribution_file,
+        header=None,
+        delimiter=common.detect_delimiter(distribution_file),
+    )
 
     # Create distribution plot
     ax = sb.histplot(data=dist[0], label="Simulated", kde=True)
     ax.set(
-        title=f"Distribution of Overlapping Ratios by Frequency (N = {len(dist)})", xlabel="Overlapping Ratio", ylabel="Frequency"
+        title=f"Distribution of Overlapping Ratios by Frequency (N = {len(dist)})",
+        xlabel="Overlapping Ratio",
+        ylabel="Frequency",
     )
 
     if other:
@@ -63,3 +75,8 @@ def visualize(distribution_file, plot_file, other):
         print("\nCalculating p-value based on normal distribution:")
         z_stat = (other - dist[0].mean()) / dist[0].std()
         print(f"p-value: {1 - norm.cdf(z_stat):.20f}")
+
+    # Normality test
+    print("\nD'Agostino-Pearson normality test:")
+    _, p = normaltest(dist[0])
+    print(f"p-value: {p:.20f}")
