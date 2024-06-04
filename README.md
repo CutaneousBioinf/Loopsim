@@ -2,9 +2,11 @@
 
 <p align="center">
 <a href="https://pypi.org/project/loopsim"><img alt="PyPI" src="https://img.shields.io/pypi/v/loopsim?logo=pypi&label=PyPI&color=green"></a>
-<a href="https://github.com/CutaneousBioinf/Loopsim/releases/latest"><img alt="GitHub" src="https://img.shields.io/github/v/release/CutaneousBioinf/Loopsim?logo=github&label=GitHub%20Release"></a>
+<img alt="GitHub Release" src="https://img.shields.io/github/v/release/CutaneousBioinf/Loopsim?include_prereleases&label=GitHub%20Release%20Version">
 <a href="https://github.com/CutaneousBioinf/Loopsim/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/CutaneousBioinf/Loopsim?label=License&color=red"></a>
 </p>
+
+
 
 - [Requirements](#requirements)
 - [Installation](#installation)
