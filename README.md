@@ -306,7 +306,7 @@ p-value: 0.0
 
 > Note: The rather odd looking distribution plot and $p = 0$ are artifacts of the simulation being $N = 2$.
 
-| ![Loopsim Distribution Plot](./img/dist_plot.jpg) |
+| ![Loopsim Distribution Plot](https://github.com/CutaneousBioinf/Loopsim/blob/master/img/dist_plot.jpg?raw=true) |
 |:--:|
 | `dist_plot.jpg` |
 
