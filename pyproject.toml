@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "loopsim"
-version = "0.6.0"
+version = "0.6.1"
 description = "Loopsim: Enrichment Analysis of Chromosome Conformation Capture with Fast Empirical Distribution Simulation"
 authors = ["Gideon Shaked <gshaked@umich.edu>"]
 maintainers = ["Gideon Shaked <gshaked@umich.edu>"]
