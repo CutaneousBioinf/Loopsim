@@ -21,6 +21,7 @@
      - [Batch Analysis](#batch-analysis)
      - [Single-file Analysis](#single-file-analysis)
   4. [Visualization](#visualization)
+ - [Cite](#cite)
 
 ## Requirements
 
@@ -311,3 +312,37 @@ p-value: 0.0
 | `dist_plot.jpg` |
 
 </details>
+
+
+## Cite
+
+If you use Loopsim in your work, please cite as follows:
+
+**Plain**
+
+```
+Gideon Shaked, Haihan Zhang, Zhaolin Zhang, Jiayu Zhou, Johann E Gudjonsson, James T Elder, Matthew T Patrick, Lam C Tsoi,
+Loopsim: enrichment analysis of chromosome conformation capture with fast empirical distribution simulation,
+NAR Genomics and Bioinformatics, Volume 7, Issue 3, September 2025, lqaf098,
+https://doi.org/10.1093/nargab/lqaf098
+```
+
+**BiBTeX**
+
+```bibtex
+@article{
+  author = {Shaked, Gideon and Zhang, Haihan and Zhang, Zhaolin and Zhou, Jiayu and Gudjonsson, Johann E and Elder, James T and Patrick, Matthew T and Tsoi, Lam C},
+	title = {Loopsim: enrichment analysis of chromosome conformation capture with fast empirical distribution simulation},
+	volume = {7},
+	issn = {2631-9268},
+	shorttitle = {Loopsim},
+	url = {https://doi.org/10.1093/nargab/lqaf098},
+	doi = {10.1093/nargab/lqaf098},
+	number = {3},
+	journal = {NAR Genomics and Bioinformatics},
+	month = sep,
+	year = {2025},
+	pages = {lqaf098},
+	abstract = {Gene regulation is intricately influenced by the three-dimensional organization of the genome. In particular, chromatin can exist in loop structures that enable long-range regulatory interactions. By utilizing chromosome conformation capture techniques such as Hi-C, valuable information regarding the organization of these loop structures in 3D space can be obtained. Although functional/feature enrichment is now a common downstream analysis for various genomic platforms to provide biological context, tools specifically designed for high-throughput assays that capture chromosome conformation remain relatively limited. Here, we present Loopsim, a command-line application that performs enrichment analysis on Hi-C loop profiles against user-defined regions (available on GitHub at https://github.com/CutaneousBioinf/Loopsim). Loopsim efficiently simulates a background distribution using a distinctive sampling approach that considers loop size, intervals, loop–loop distances, and structure; it then computes statistics based on the empirical null distribution.},
+}
+```
